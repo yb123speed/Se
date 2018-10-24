@@ -1,0 +1,112 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>注册</title>
+    <link rel="stylesheet" href="/Styles/base.css" />
+    <link href="/Styles/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Styles/theme.css" />
+    <script type="text/javascript" src="/Scripts/jquery-1.8.0.min.js"></script>
+</head>
+<body>
+    <div class="login_content register_content">
+        <div class="login_user login_common">
+            <div class="fl">用户名</div>
+            <div class="fl">
+                <input type="text" placeholder="请输入用户名" id="cname" />
+            </div>
+        </div>
+        <div class="login_pwd login_common">
+            <div class="fl">密码</div>
+            <div class="fl">
+                <input type="password" placeholder="请输入密码" id="pwd" />
+            </div>
+        </div>
+        <div class="login_pwd login_common">
+            <div class="fl">确认密码</div>
+            <div class="fl">
+                <input type="password" placeholder="请再次输入密码" id="repwd" />
+            </div>
+        </div>
+        <div class="login_pwd login_common">
+            <div class="fl">推荐人</div>
+            <div class="fl">
+                <input type="text" id="userid" value="@ViewBag.InviteCode" placeholder="请输入推荐人号(选填)" />
+            </div>
+        </div>
+
+        <div class="login_pwd login_common register_num">
+            <div class="fl">验证码</div>
+            <div class="fl">
+                <input type="text" placeholder="请输入验证码" id="cowde" />
+                <img id="code" class="yzmCode" alt="" onclick="javascript:this.src='/User/ValidateCode?'+new Date();" />
+            </div>
+        </div>
+        <div class="login_confirm">
+            <input type="button" value="注册" onclick="addagent()" id="saveInfo" />
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    $(function () {
+
+        showcode();
+    })
+    function showcode() {
+        $("#code").attr("src", "/User/ValidateCode?" + new Date());
+        $("#code").css("display", "block");
+    }
+    function addagent() {
+        var username = $("#cname").val();
+        var pwd = $("#pwd").val();
+        var repwd = $("#repwd").val();
+        var uid = $("#userid").val();
+
+        if (username == "") { alert("请输入用户名！"); return; }
+        if (pwd == "") { alert("请输入密码！"); return; }
+
+        $.ajax({
+            url: '/User/Register',
+            async: false,
+            type: 'POST',
+            data: { 'action': 'agent', UserName: username, Password: pwd, ParentId: uid, ValiteCode: $("#cowde").val(), ConfirmPassword: repwd },
+            success: function (data) {
+                if (data == "true") {
+                    alert("注册成功！");
+                    window.location.href="/User/Login";
+                }
+                else if (data == "exist") {
+                    alert("用户名已存在！");
+                    $("#cname").focus();
+                    return;
+                }
+                else if (data == "noaff") {
+                    alert("推荐人不存在！");
+                    $("#cname").focus();
+                    return;
+                }
+                else if (data == "false") {
+                    alert("验证码错误！");
+                    $("#cname").focus();
+                    return;
+                }
+                else if (data == "repwd")
+                {
+                    alert("两次密码不同！");
+                    $("#repwd").focus();
+                }
+                else {
+                    alert("注册失败！");
+                    $("#cname").focus();
+                    return;
+                }
+            }
+        });
+    }
+</script>
+</html>

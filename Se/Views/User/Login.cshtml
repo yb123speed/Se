@@ -1,0 +1,73 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>登录</title>
+    <link rel="stylesheet" href="/Styles/base.css" />
+    <link href="/Styles/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Styles/theme.css" />
+    <script type="text/javascript" src="/Scripts/jquery-1.8.0.min.js"></script>
+</head>
+<body>
+    <div class="login_content">
+        <div class="login_user login_common">
+            <div class="fl">用户名</div>
+            <div class="fl">
+                <input type="text" placeholder="请输入用户名" id="useIn" />
+            </div>
+        </div>
+        <div class="login_pwd login_common">
+            <div class="fl">密码</div>
+            <div class="fl">
+                <input type="password" placeholder="请输入密码" id="passIn" />
+            </div>
+        </div>
+        <div class="login_tips">
+            <a href="/User/Register" class="fr">注册账号</a>
+        </div>
+        <div class="login_confirm">
+            <input type="button" value="登录" id="saveInfo" onclick="login()" />
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    function login() {
+        var username = $("#useIn").val();
+        var pwd = $("#passIn").val();
+
+        if (username == "") { alert("请输入用户名！"); return; }
+        if (pwd == "") { alert("请输入密码！"); return; }
+
+        $.ajax({
+            url: '/User/Login',
+            async: false,
+            type: 'POST',
+            data: { UserName: username, Password: pwd },
+            success: function (data) {
+                if (data == "true") {
+
+                    window.location.href = "/User/Index";
+                }
+                else if (data == "status")
+                {
+                    alert("账号状态异常！请联系管理员");
+                    $("#useIn").focus();
+                    return;
+                }
+                else {
+                    alert("用户名或密码错误！");
+                    $("#useIn").focus();
+                    return;
+                }
+            }
+        });
+    }
+</script>
+</html>
