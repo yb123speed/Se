@@ -8,6 +8,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Se.Models;
+using QRCoder;
+using System.IO;
+using System.Drawing.Imaging;
+using System.Drawing;
 
 namespace Se.Controllers
 {
@@ -203,6 +207,22 @@ namespace Se.Controllers
             string CCode = Se.Models.ValidateCode.CreateValidateCode(5);
             Session["CheckCode"] = CCode.ToLower();
             return File(Se.Models.ValidateCode.CreateValidateGraphic(CCode), @"image/jpeg");
+        }
+
+        [Authorize]
+        public ActionResult InviteQRCode()
+        {
+            string url = Request.Url.Scheme + "://" + Request.Url.Host+"/User/Register/"+ User.Identity.Name;
+            QRCodeGenerator qrGenerator = new QRCoder.QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(url, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrcode = new QRCode(qrCodeData);
+
+            // qrcode.GetGraphic 方法可参考最下发“补充说明”
+            Bitmap qrCodeImage = qrcode.GetGraphic(5, Color.Black, Color.White, null, 15, 6, false);
+            MemoryStream ms = new MemoryStream();
+            qrCodeImage.Save(ms, ImageFormat.Jpeg);
+
+            return File(ms.ToArray(), @"image/jpeg");
         }
     }
 }
