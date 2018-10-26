@@ -11,16 +11,12 @@ namespace Se.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class User
     {
         public int Id { get; set; }
-        [MaxLength(50,ErrorMessage ="用户名不能超过50个字符")]
         public string UserName { get; set; }
-        [MaxLength(50, ErrorMessage = "密码不能超过50个字符")]
         public string Password { get; set; }
-        [MaxLength(50, ErrorMessage = "昵称不能超过50个字符")]
         public string NickName { get; set; }
         public System.DateTime RegisterTime { get; set; }
         public int ParentId { get; set; }
