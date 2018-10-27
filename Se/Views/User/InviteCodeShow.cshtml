@@ -1,0 +1,63 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head >
+    <meta charset="utf-8" />
+    <title>首页</title>
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control" />
+    <meta content="no-cache" http-equiv="pragma" />
+    <meta content="0" http-equiv="expires" />
+    <meta content="telephone=no, address=no" name="format-detection" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- apple devices fullscreen -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link rel="stylesheet" type="text/css" href="~/lib/base.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="~/lib/style.css" media="all" />
+    <script src="~/js/jquery-1.8.0.min.js"></script>
+    <script src="~/js/fontsize.js"></script>
+</head>
+
+<body class="backF1" style="overflow-x:hidden;">
+    <form id="form1" >
+        <div style="width:100%;margin-top:5rem;text-align:center;">
+            <img src="/User/InviteQRCode" style="width:80%;margin:0;height:auto;" />
+        </div>
+        <input type="hidden" id="hidclickx" value=""  />
+        <input type="hidden" id="hidclicky" value=""  />
+        <input type="hidden" id="hidpricex" value=""  />
+        <input type="hidden" id="hidpricey" value=""  />
+        <div class="foot"></div>
+        <ul class="footer clearfix0 tac">
+            <li><a href="/User/Index"><i class="iconfont">&#xe67b;</i><p>概况</p></a></li>
+            <li><a href="#"><i class="iconfont">&#xe6e0;</i><p>收益</p></a></li>
+            <li class="curr"><a href="/User/InviteCodeShow"><i class="iconfont">&#xe612;</i><p>推广码</p></a></li>
+            <li><a href="/User/Mine"><i class="iconfont">&#xe63f;</i><p>我的</p></a></li>
+        </ul>
+
+
+        <script>
+            $(function () {
+                $('.briefList h2 .date').click(function () {
+                    var i = $(this).index();
+                    $(this).parent().siblings('.dataImg').hide();
+                    $(this).parent().siblings('.dataImg').eq(i).show();
+                    $(this).siblings().removeClass('dateHov');
+                    $(this).addClass('dateHov');
+                })
+            })
+        </script>
+        <script type="text/javascript">
+            $(function () {
+                $("#main").css("width", ($(window).width() - 30));
+                $("#chart2").css("width", ($(window).width() - 30));
+            });
+        </script>
+    </form>
+</body>
+</html>

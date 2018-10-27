@@ -210,6 +210,13 @@ namespace Se.Controllers
         }
 
         [Authorize]
+        public ActionResult InviteCodeShow()
+        {   
+            return View();
+        }
+        
+
+        [Authorize]
         public ActionResult InviteQRCode()
         {
             string url = Request.Url.Scheme + "://" + Request.Url.Host+"/User/Register/"+ User.Identity.Name;
@@ -223,6 +230,25 @@ namespace Se.Controllers
             qrCodeImage.Save(ms, ImageFormat.Jpeg);
 
             return File(ms.ToArray(), @"image/jpeg");
+        }
+
+        [Authorize]
+        public ActionResult AffShow()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult GetAffUserList(int affid)
+        {
+            var list = db.Users.Where(m => m.ParentId == affid).ToList();
+            return Json(list);
+        }
+
+        public int GetUserAffUserCount(int affid)
+        {
+            var count = db.Users.Where(m => m.ParentId == affid).Count();
+            return count;
         }
     }
 }

@@ -5,131 +5,277 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head >
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <title>我的</title>
-    <link rel="stylesheet" href="/Styles/base.css" />
-    <link href="/Styles/mui.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/Styles/theme.css" />
-    <script type="text/javascript" src="~/Scripts/jquery-1.8.0.min.js"></script>
-</head>
-<body>
-    <!--banner -->
-    <div class="usp_inbanner"><a href="#"><img src="/images/index_02.png"></a></div>
-    <!--访问流量 -->
-    <div class="wout usp_inflow_bg bdr-bottom">
-        <div class="usp_inflow clearfix">
-            <div class="usp_inflow_left">
-                <h2 class="inflow_left_ico">收益（元）</h2>
-                <dl>
-                    <dt>236.45</dt>
-                    <dd>昨日收益</dd>
-                </dl>
-            </div>
-            <div class="usp_inflow_middle">
-                <h2 class="inflow_middle_ico">点击（次）</h2>
-                <dl>
-                    <dt>322</dt>
-                    <dd>昨日点击</dd>
-                </dl>
-            </div>
-            <div class="usp_inflow_right">
-                <h2 class="inflow_right_ico">访问（次）</h2>
-                <dl>
-                    <dt>3645</dt>
-                    <dd>昨日访问</dd>
-                </dl>
-            </div>
-        </div>
-    </div>
+    <title>首页</title>
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control" />
+    <meta content="no-cache" http-equiv="pragma" />
+    <meta content="0" http-equiv="expires" />
+    <meta content="telephone=no, address=no" name="format-detection" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- apple devices fullscreen -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-    <!--微闪告/原创告 -->
-    <div class="wout">
-        <div class="usp_bignav bdr-bottom">
-            <div class="usp_bignav_left">
-                <a href="#"><img src="/images/index_wsg.png" width="100%" height="100%"><span><h2>微闪告</h2><p>快速发布广告</p></span></a>
-            </div>
-            <div class="usp_bignav_right">
-                <a href="#"><img src="/images/index_ycg.png" width="100%" height="100%"><span><h2>原创告</h2><p>发布原创广告</p></span></a>
-            </div>
-        </div>
-        <!--USP头条 -->
-        <div class="usp_headline">
-            <div class="usp_fixed">
-                <div class="usp_headline_tit bdr-bottom ">USP头条<span><a href="#">查看更多</a></span></div>
-                <!--滚动导航 -->
-                <div class="find_nav">
-                    <div class="find_nav_left">
-                        <div class="find_nav_list">
-                            <ul>
-                                <li class="find_nav_cur"><a href="javascript:void(0)">最新</a></li>
-                                <li><a href="javascript:void(0)">类别名1</a></li>
-                                <li><a href="javascript:void(0)">类别名2</a></li>
-                                <li><a href="javascript:void(0)">类别名3</a></li>
-                                <li><a href="javascript:void(0)">类别名4</a></li>
-                                <li><a href="javascript:void(0)">类别名5</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <a class="newsbj" href=""><img src="/images/news_bj.png" width="100%"></a>
+    <link rel="stylesheet" type="text/css" href="~/lib/base.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="~/lib/style.css" media="all" />
+    <script src="~/js/jquery-1.8.0.min.js"></script>
+    <script src="~/js/fontsize.js"></script>
+    <script src="~/js/echarts/echarts.js"></script>
+    @*<%--
+    <style type="text/css">
+        .briefList .dataImg {
+            width: 6.76rem;
+            height: 2.6rem;
+            margin: 0 auto;
+            display: none;
+        }
+    </style>--%>*@
+    <script type="text/javascript">
+        $(function () {
+            // $(".chart").css("width",($(window).width()-100));
+            $(".chart").css("width", $(window).width());
+        })
+    </script>
+</head>
+
+<body class="backF1" style="overflow-x:hidden;">
+    <form id="form1" >
+        <div class="briefTop">
+            <div>
+                <img src="~/images/user.jpg" class="userImg" id="imglogo"onclick="javascript:window.location.href='Account/AccountMain.aspx'" />
+                <div class="userInfo">
+                    <span id="lblusername"onclick="javascript:window.location.href='Account/AccountMain.aspx'"></span>
+                    <p>余额：<b id="lblyue" >0.00</b> 元 <a href="~/Income/AccountDetail.aspx">余额明细</a></p>
                 </div>
             </div>
-            <script>
-    $(function () {
-        //window.onscroll=function(){
-        //if ($(document).scrollTop() > 443.04)
-        //{
-        //$(".find_nav").addClass('find_nav_fixed');
-        //}else{
-        //$(".find_nav").removeClass('find_nav_fixed');
-        //}
-        //}
-        window.onscroll = function () {
-            if ($(document).scrollTop() > 391.32) {
-                $(".usp_fixed").addClass('usp_fixedd');
-            } else {
-                $(".usp_fixed").removeClass('usp_fixedd');
-            }
-        }
-    });
-
-            </script>
-            <div class="usp_headline_con clearfix">
-                <ul>
-                    <li class="clearfix">
-                        <div class="intext_tit"><a href="#">美媒:朝在建能发射30发以0上导弹的3000吨级新潜艇</a></div>
-                        <div class="intext_time bdr-bottom "><font>2017-04-12&emsp;类别名称</font><span><a href="#"><img src="/images/index_ico03.png" width="100%">分享</a></span></div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="intext_tit"><a href="#">美媒:朝在建能发射30发以0上导弹的3000吨级新潜艇</a></div>
-                        <div class="intext_time bdr-bottom "><font>04-12&emsp;类别名称</font><span><a href="#"><img src="/images/index_ico03.png" width="100%">分享</a></span></div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="intext_tit"><a href="#">美媒:朝在建能发射30发以0上导弹的3000吨级新潜艇</a></div>
-                        <div class="intext_time bdr-bottom "><font>2017-04-12&emsp;类别名称</font><span><a href="#"><img src="/images/index_ico03.png" width="100%">分享</a></span></div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="intext_tit"><a href="#">美媒:朝在建能发射30发以0上导弹的3000吨级新潜艇</a></div>
-                        <div class="intext_time bdr-bottom "><font>2017-04-12&emsp;类别名称</font><span><a href="#"><img src="/images/index_ico03.png" width="100%">分享</a></span></div>
-                    </li>
-                    <li class="clearfix">
-                        <div class="intext_tit"><a href="#">美媒:朝在建能发射30发以0上导弹的3000吨级新潜艇</a></div>
-                        <div class="intext_time bdr-bottom "><font>04-12&emsp;类别名称</font><span><a href="#"><img src="/images/index_ico03.png" width="100%">分享</a></span></div>
-                    </li>
-                </ul>
+            <span class="identy" id="spanrenzheng" ><i class="iconfont">&#xe643;</i>已认证</span>
+            <span class="inIdenty" id="spanweirenzheng"onclick="javascript:window.location.href='Account/Authentication.aspx'"><i class="iconfont">&#xe60d;</i>未认证</span>
+        </div>
+        <div class="briefCon">
+            <div class="briefList">
+                <p><i class="iconfont">&#xe6a5;</i>提现一览</p>
+                <div class="money clearfix0">
+                    <a href="~/Income/YesterdayEarnings.aspx"><span>可提现金额<br /><b id="lblketi" >0.00元</b></span></a>
+                    <a href="~/Income/ApplicationDetail.aspx"><span>提现中金额<br /><b id="lbltiing" >0.0元</b></span></a>
+                    <a href="~/Income/PresentRecord.aspx"><span>已提现金额<br /><b id="lblyiti" >0.0元</b></span></a>
+                </div>
+            </div>
+            <div class="briefList">
+                <p><i class="iconfont">&#xe629;</i>收益一览</p>
+                <div class="money clearfix0">
+                    <a href="javascript:void(0)"><span>昨日收益<br /><b id="lblzuo" >0.0元</b></span></a>
+                    <a href="~/Income/SevenEarnings.aspx"><span>前7天累计收益<br /><b id="lblqian" >0.0元</b></span></a>
+                    <a href="~/Income/SumEarnings.aspx"><span>累计收益<br /><b id="lblsum" >0.0元</b></span></a>
+                </div>
+            </div>
+            <div class='briefList'>
+                <p><i class="iconfont">&#xe629;</i>下线一览</p>
+                <div class="money clearfix0">
+                    <div id="aff">
+                        @Html.Action("AffShow","User",null)
+                    </div>
+                </div>
+                </div>
+                @*<div class="briefList">
+            <p><i class="iconfont">&#xe605;</i>分享一览</p>
+            <div class="money clearfix0">
+                <a href="javascript:void(0)"><span>昨日分享量<br /><b id="lblzuo2" >0</b></span></a>
+                <a href="~/Income/SevenClick.aspx"><span>前7天累计分享量<br /><b id="lblqian2" >0</b></span></a>
+                <a href="~/Income/SumClick.aspx"><span>累计分享量<br /><b id="lblsum2" >0</b></span></a>
             </div>
         </div>
-        <div class="in_more">没有更多资讯了</div>
-    </div>
-    <!--底部导航 -->
-    <div class="foot" style="background:#fff;"></div>
-    <div class="menu clearfix">
-        <div class="bdr-top"></div>
-        <a class="pic1 picgl" href="#"><p>首页</p></a>
-        <a class="pic2" href="#"><p>收益</p></a>
-        <a class="pic3" href="#"><p>发布</p></a>
-        <a class="pic4" href="#"><p>我的</p></a>
-    </div>
+        <div class="briefList">
+            <p><i class="iconfont">&#xe605;</i>分成一览</p>
+            <div class="money clearfix0">
+                <a href="javascript:void(0)"><span>昨日分成<br /><b id="fenzuo" >0.00元</b></span></a>
+                <a href="~/Income/SevenSplit.aspx"><span>前7天累计分成<br /><b id="fenqian" >0.00元</b></span></a>
+                <a href="~/Income/SplitDetailList.aspx"><span>累计分成<br /><b id="lblfensum" >0.00元</b></span></a>
+            </div>
+        </div>*@
+                @*<div class="briefList">
+            <p><i class="iconfont">&#xe614;</i>分销工具</p>
+            <div class="money clearfix0">
+                <a href="Resource/WSG.aspx"><span>微闪告<br /></span></a>
+                <a href="Resource/WShare.aspx"><span>微分享<br /></span></a>
+
+            </div>
+        </div>
+        <div class="briefList">
+            <p><i class="iconfont">&#xe636;</i>近7天点击量统计</p>
+
+            <div class="dataImg dataImg0" style="height: 2.8rem;">
+                <div class="chart" id="main" style=" height: 150px; width:300px; margin-top: -48px;">
+                </div>
+            </div>
+
+        </div>*@
+                @*<div class="briefList">
+            <p><i class="iconfont">&#xe613;</i>本月分享收益统计</p>
+
+            <div class="dataImg dataImg0" style="height: 3.8rem;">
+                <div class="chart" id="chart2" style="height:200px;  width:320px;margin-top:-48px">
+                </div>
+            </div>
+
+        </div>*@
+            </div>
+        <input type="hidden" id="hidclickx" value=""/>
+        <input type="hidden" id="hidclicky" value=""/>
+        <input type="hidden" id="hidpricex" value=""/>
+        <input type="hidden" id="hidpricey" value=""/>
+        <div class="foot"></div>
+        <ul class="footer clearfix0 tac">
+            <li class="curr"><a href="/User/Index"><i class="iconfont">&#xe67b;</i><p>概况</p></a></li>
+            <li><a href="#"><i class="iconfont">&#xe6e0;</i><p>收益</p></a></li>
+            <li><a href="/User/InviteCodeShow"><i class="iconfont">&#xe612;</i><p>推广码</p></a></li>
+            <li><a href="/User/Mine"><i class="iconfont">&#xe63f;</i><p>我的</p></a></li>
+        </ul>
+
+
+        <script>
+            $(function () {
+                $('.briefList h2 .date').click(function () {
+                    var i = $(this).index();
+                    $(this).parent().siblings('.dataImg').hide();
+                    $(this).parent().siblings('.dataImg').eq(i).show();
+                    $(this).siblings().removeClass('dateHov');
+                    $(this).addClass('dateHov');
+                })
+            })
+        </script>
+
+        @*<script>
+
+
+            var myChart = echarts.init(document.getElementById('main'));
+            var dataAxis = $("#hidclickx").val().split(","); //x
+            var data = $("#hidclicky").val().split(","); //y
+            option = {
+                color: ['#3398DB'],
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: dataAxis,
+                        axisTick: {
+                            alignWithLabel: true
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '点击量',
+                        type: 'bar',
+                        barWidth: '60%',
+                        data: data
+                    }
+                ]
+            };
+            myChart.setOption(option);
+
+
+        </script>
+        <script>
+            var myChart2 = echarts.init(document.getElementById('chart2'));
+            var dataAxis2 = $("#hidpricex").val().split(","); //x
+            var data2 = $("#hidpricey").val().split(","); //y
+
+            option2 = {
+                tooltip: {
+                    trigger: 'axis',
+                    position: function (pt) {
+                        return [pt[0], '10%'];
+                    }
+                },
+
+                toolbox: {
+                    feature: {
+                        dataZoom: {
+                            yAxisIndex: 'none'
+                        },
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: dataAxis2
+                },
+                yAxis: {
+                    type: 'value',
+                    boundaryGap: [0, '100%']
+                },
+                dataZoom: [{
+                    type: 'inside',
+                    start: 0,
+                    end: 100
+                }, {
+                    start: 0,
+                    end: 10,
+                    handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                    handleSize: '80%',
+                    handleStyle: {
+                        color: '#fff',
+                        shadowBlur: 3,
+                        shadowColor: 'rgba(0, 0, 0, 0.6)',
+                        shadowOffsetX: 2,
+                        shadowOffsetY: 2
+                    }
+                }],
+                series: [
+                    {
+                        name: '分享收益',
+                        type: 'line',
+                        smooth: true,
+                        symbol: 'none',
+                        sampling: 'average',
+                        itemStyle: {
+                            normal: {
+                                color: 'rgb(255, 70, 131)'
+                            }
+                        },
+                        areaStyle: {
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: 'rgb(255, 158, 68)'
+                                }, {
+                                    offset: 1,
+                                    color: 'rgb(255, 70, 131)'
+                                }])
+                            }
+                        },
+                        data: data2
+                    }
+                ]
+            };
+
+            myChart2.setOption(option2);
+        </script>*@
+        <script type="text/javascript">
+            $(function () {
+                $("#main").css("width", ($(window).width() - 30));
+                $("#chart2").css("width", ($(window).width() - 30));
+            });
+        </script>
+    </form>
 </body>
 </html>

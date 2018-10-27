@@ -1,0 +1,152 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>推广图</title>
+</head>
+<body>
+    <script src="~/Scripts/jquery-1.8.0.min.js"></script>
+    <link href="/Scripts/treeview/jquery.treeview.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/treeview/jquery.treeview.js" type="text/javascript"></script>
+    <script src="/Scripts/treeview/jquery.treeview.async.js" type="text/javascript"></script>
+    <style type="text/css">
+       #aff ul {
+            display: inherit;
+            height: auto;
+        }
+
+       #aff li {
+            list-style: none;
+            height: auto;
+        }
+
+           #aff li span {
+                cursor: pointer;
+            }
+
+        #aff p {
+            font-family: '微软雅黑';
+            font-size: 14px;
+            color: #467A00;
+            height: 25px;
+            line-height: 25px;
+            font-weight: bold;
+            margin: 5px;
+        }
+    </style>
+
+    <div id="aff_menu">
+        <ul id="ul_@User.Identity.Name" class="treeview "></ul>
+    </div>
+
+    <script type="text/jscript">
+    $(function () {
+        GetAff_ul(@User.Identity.Name);
+    })
+
+    var affhtml = "";
+    var affcount = 0;
+
+    function showAff(t) {
+        if ($(t).next("ul").attr("style") != "display: none;") {
+            $(t).next("ul").hide();
+            $(t).prev("div").attr("class", "hitarea expandable-hitarea");
+            $(t).parent("li").attr("class", "expandable");
+        } else {
+            $(t).next("ul").show();
+            $(t).prev("div").attr("class", "hitarea collapsable-hitarea");
+            $(t).parent("li").attr("class", "collapsable");
+            var id = $(t).attr("data");
+            GetAff_ul(id);
+        }
+        @*var height = 0;
+        //alert($("#ul_@User.Identity.Name li").length);
+        $("#ul_@User.Identity.Name li").each(function () {
+            height += $(this).height();
+        })
+        //alert(height);
+        //$("#aff_menu").height(height);
+        window.document.documentElement.scrollHeight = (height + 80);
+        window.document.body.scrollHeight = (height + 80);
+        window.document.documentElement.offsetHeight = (height + 80);
+        window.document.body.scrollHeight = (height + 80);
+        window.document.body.clientHeight = (height + 80);
+        $(this).height((height+80));
+        alert($(this).height());*@
+        reSizeParentIframe();
+    }
+
+    function GetAff_ul(id) {
+        $("#ul_" + id).html("");
+        $.ajax({
+            url: "/User/GetAffUserList?affid=" + id,
+            type: 'Post',
+            async: false,
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                $.each(data, function (i, item) {
+                    if (item != null) {
+                        //GetAffCount(item.Uid);
+                        affhtml = "";
+                        affhtml += "<li id='" + item.Id + "' class='expandable'>";
+                        affhtml += "<div class='hitarea expandable-hitarea'></div>";
+                        affhtml += "<span onclick='showAff(this)' data='" + item.Id + "'>" + item.UserName + "</span>";
+                        affhtml += "<ul id='ul_" + item.Id + "' style='display: none;'>";
+                        affhtml += "</ul>";
+                        affhtml += "</li>";
+
+                        $("#ul_" + id).append(affhtml);
+                    }
+                })
+            },
+            error: function (msg) {
+                $.alert("加载失败！" + msg);
+            }
+        });
+    }
+
+    function GetAffCount(id) {
+        $.ajax({
+            url: "/User/GetUserAffUserCount?affid=" + id,
+            type: 'Get',
+            async: false,
+            //dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                affcount = data;
+            },
+            error: function (msg) {
+                $.alert("加载失败！" + msg);
+            }
+        });
+    }
+
+    //子页面重新修改父页面iframe高度
+    function reSizeParentIframe() {
+        if ($("#main", window.parent.document).is("iframe")) {
+            var height = $("#aff_menu").height() + 80;
+            $("#main", window.parent.document).height(height);
+        }
+    }
+
+    @*$(document).ready(function () {
+
+        // first example
+        $("#ul_@User.Identity.Name").treeview({
+            persist: "#fast",
+            collapsed: true,
+            unique: true
+        });
+
+    });*@
+    </script>
+
+</body>
+</html>
