@@ -171,6 +171,7 @@
       <DependentUpon>SeModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AdminRole.cs" />
+    <Compile Include="Models\SeEnum.cs" />
     <Compile Include="Models\SeModels.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -193,6 +194,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Se.mdf" />
+    <Content Include="App_Data\Se_log.ldf">
+      <DependentUpon>Se.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -1019,6 +1024,29 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\pop.js" />
+    <Content Include="Scripts\treeview\images\ajax-loader.gif" />
+    <Content Include="Scripts\treeview\images\file.gif" />
+    <Content Include="Scripts\treeview\images\folder-closed.gif" />
+    <Content Include="Scripts\treeview\images\folder.gif" />
+    <Content Include="Scripts\treeview\images\minus.gif" />
+    <Content Include="Scripts\treeview\images\plus.gif" />
+    <Content Include="Scripts\treeview\images\treeview-black-line.gif" />
+    <Content Include="Scripts\treeview\images\treeview-black.gif" />
+    <Content Include="Scripts\treeview\images\treeview-default-line.gif" />
+    <Content Include="Scripts\treeview\images\treeview-default.gif" />
+    <Content Include="Scripts\treeview\images\treeview-famfamfam-line.gif" />
+    <Content Include="Scripts\treeview\images\treeview-famfamfam.gif" />
+    <Content Include="Scripts\treeview\images\treeview-gray-line.gif" />
+    <Content Include="Scripts\treeview\images\treeview-gray.gif" />
+    <Content Include="Scripts\treeview\images\treeview-red-line.gif" />
+    <Content Include="Scripts\treeview\images\treeview-red.gif" />
+    <Content Include="Scripts\treeview\jquery.treeview.async.js" />
+    <Content Include="Scripts\treeview\jquery.treeview.css" />
+    <Content Include="Scripts\treeview\jquery.treeview.edit.js" />
+    <Content Include="Scripts\treeview\jquery.treeview.js" />
+    <Content Include="Scripts\treeview\jquery.treeview.sortable.js" />
+    <Content Include="Scripts\treeview\lib\jquery.cookie.js" />
+    <Content Include="Scripts\treeview\lib\jquery.js" />
     <Content Include="Scripts\xwkjs.js" />
     <Content Include="Styles\base.css" />
     <Content Include="Styles\common.css" />
@@ -1046,10 +1074,9 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\User\AffShow.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
