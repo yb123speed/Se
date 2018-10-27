@@ -1075,10 +1075,7 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\User\AffShow.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\User\InviteCodeShow.cshtml" />
-=======
->>>>>>> 92ac78ee9b08fe676b87a789c461e61434cb2faf
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

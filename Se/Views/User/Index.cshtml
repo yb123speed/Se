@@ -22,15 +22,6 @@
     <script src="~/js/jquery-1.8.0.min.js"></script>
     <script src="~/js/fontsize.js"></script>
     <script src="~/js/echarts/echarts.js"></script>
-    @*<%--
-    <style type="text/css">
-        .briefList .dataImg {
-            width: 6.76rem;
-            height: 2.6rem;
-            margin: 0 auto;
-            display: none;
-        }
-    </style>--%>*@
     <script type="text/javascript">
         $(function () {
             // $(".chart").css("width",($(window).width()-100));
@@ -40,7 +31,6 @@
 </head>
 
 <body class="backF1" style="overflow-x:hidden;">
-<<<<<<< HEAD
     <form id="form1" >
         <div class="briefTop">
             <div>
@@ -78,61 +68,6 @@
                     </div>
                 </div>
                 </div>
-                @*<div class="briefList">
-            <p><i class="iconfont">&#xe605;</i>分享一览</p>
-            <div class="money clearfix0">
-                <a href="javascript:void(0)"><span>昨日分享量<br /><b id="lblzuo2" >0</b></span></a>
-                <a href="~/Income/SevenClick.aspx"><span>前7天累计分享量<br /><b id="lblqian2" >0</b></span></a>
-                <a href="~/Income/SumClick.aspx"><span>累计分享量<br /><b id="lblsum2" >0</b></span></a>
-=======
-    <form id="form1" runat="server">
-        <div class="briefTop">
-            <div>
-                <img src="~/images/user.jpg" class="userImg" id="imglogo" runat="server" onclick="javascript:window.location.href='Account/AccountMain.aspx'" />
-                <div class="userInfo">
-                    <span id="lblusername" runat="server" onclick="javascript:window.location.href='Account/AccountMain.aspx'"></span>
-                    <p>余额：<b id="lblyue" runat="server">0.00</b> 元 <a href="~/Income/AccountDetail.aspx">余额明细</a></p>
-                </div>
->>>>>>> 92ac78ee9b08fe676b87a789c461e61434cb2faf
-            </div>
-            <span class="identy" id="spanrenzheng" runat="server"><i class="iconfont">&#xe643;</i>已认证</span>
-            <span class="inIdenty" id="spanweirenzheng" runat="server" onclick="javascript:window.location.href='Account/Authentication.aspx'"><i class="iconfont">&#xe60d;</i>未认证</span>
-        </div>
-<<<<<<< HEAD
-        <div class="briefList">
-            <p><i class="iconfont">&#xe605;</i>分成一览</p>
-            <div class="money clearfix0">
-                <a href="javascript:void(0)"><span>昨日分成<br /><b id="fenzuo" >0.00元</b></span></a>
-                <a href="~/Income/SevenSplit.aspx"><span>前7天累计分成<br /><b id="fenqian" >0.00元</b></span></a>
-                <a href="~/Income/SplitDetailList.aspx"><span>累计分成<br /><b id="lblfensum" >0.00元</b></span></a>
-            </div>
-        </div>*@
-                @*<div class="briefList">
-            <p><i class="iconfont">&#xe614;</i>分销工具</p>
-            <div class="money clearfix0">
-                <a href="Resource/WSG.aspx"><span>微闪告<br /></span></a>
-                <a href="Resource/WShare.aspx"><span>微分享<br /></span></a>
-
-            </div>
-        </div>
-        <div class="briefList">
-            <p><i class="iconfont">&#xe636;</i>近7天点击量统计</p>
-
-            <div class="dataImg dataImg0" style="height: 2.8rem;">
-                <div class="chart" id="main" style=" height: 150px; width:300px; margin-top: -48px;">
-                </div>
-            </div>
-
-        </div>*@
-                @*<div class="briefList">
-            <p><i class="iconfont">&#xe613;</i>本月分享收益统计</p>
-
-            <div class="dataImg dataImg0" style="height: 3.8rem;">
-                <div class="chart" id="chart2" style="height:200px;  width:320px;margin-top:-48px">
-                </div>
-            </div>
-
-        </div>*@
             </div>
         <input type="hidden" id="hidclickx" value=""/>
         <input type="hidden" id="hidclicky" value=""/>
@@ -144,78 +79,6 @@
             <li><a href="#"><i class="iconfont">&#xe6e0;</i><p>收益</p></a></li>
             <li><a href="/User/InviteCodeShow"><i class="iconfont">&#xe612;</i><p>推广码</p></a></li>
             <li><a href="/User/Mine"><i class="iconfont">&#xe63f;</i><p>我的</p></a></li>
-=======
-        <div class="briefCon">
-            <div class="briefList">
-                <p><i class="iconfont">&#xe6a5;</i>提现一览</p>
-                <div class="money clearfix0">
-                    <a href="~/Income/YesterdayEarnings.aspx"><span>可提现金额<br /><b id="lblketi" runat="server">0.00元</b></span></a>
-                    <a href="~/Income/ApplicationDetail.aspx"><span>提现中金额<br /><b id="lbltiing" runat="server">0.0元</b></span></a>
-                    <a href="~/Income/PresentRecord.aspx"><span>已提现金额<br /><b id="lblyiti" runat="server">0.0元</b></span></a>
-                </div>
-            </div>
-            <div class="briefList">
-                <p><i class="iconfont">&#xe629;</i>收益一览</p>
-                <div class="money clearfix0">
-                    <a href="javascript:void(0)"><span>昨日收益<br /><b id="lblzuo" runat="server">0.0元</b></span></a>
-                    <a href="~/Income/SevenEarnings.aspx"><span>前7天累计收益<br /><b id="lblqian" runat="server">0.0元</b></span></a>
-                    <a href="~/Income/SumEarnings.aspx"><span>累计收益<br /><b id="lblsum" runat="server">0.0元</b></span></a>
-                </div>
-            </div>
-            <div class="briefList">
-                <p><i class="iconfont">&#xe605;</i>分享一览</p>
-                <div class="money clearfix0">
-                    <a href="javascript:void(0)"><span>昨日分享量<br /><b id="lblzuo2" runat="server">0</b></span></a>
-                    <a href="~/Income/SevenClick.aspx"><span>前7天累计分享量<br /><b id="lblqian2" runat="server">0</b></span></a>
-                    <a href="~/Income/SumClick.aspx"><span>累计分享量<br /><b id="lblsum2" runat="server">0</b></span></a>
-                </div>
-            </div>
-            <div class="briefList">
-                <p><i class="iconfont">&#xe605;</i>分成一览</p>
-                <div class="money clearfix0">
-                    <a href="javascript:void(0)"><span>昨日分成<br /><b id="fenzuo" runat="server">0.00元</b></span></a>
-                    <a href="~/Income/SevenSplit.aspx"><span>前7天累计分成<br /><b id="fenqian" runat="server">0.00元</b></span></a>
-                    <a href="~/Income/SplitDetailList.aspx"><span>累计分成<br /><b id="lblfensum" runat="server">0.00元</b></span></a>
-                </div>
-            </div>
-            @*<div class="briefList">
-                <p><i class="iconfont">&#xe614;</i>分销工具</p>
-                <div class="money clearfix0">
-                    <a href="Resource/WSG.aspx"><span>微闪告<br /></span></a>
-                    <a href="Resource/WShare.aspx"><span>微分享<br /></span></a>
-
-                </div>
-            </div>
-            <div class="briefList">
-                <p><i class="iconfont">&#xe636;</i>近7天点击量统计</p>
-
-                <div class="dataImg dataImg0" style="height: 2.8rem;">
-                    <div class="chart" id="main" style=" height: 150px; width:300px; margin-top: -48px;">
-                    </div>
-                </div>
-
-            </div>*@
-            @*<div class="briefList">
-                <p><i class="iconfont">&#xe613;</i>本月分享收益统计</p>
-
-                <div class="dataImg dataImg0" style="height: 3.8rem;">
-                    <div class="chart" id="chart2" style="height:200px;  width:320px;margin-top:-48px">
-                    </div>
-                </div>
-
-            </div>*@
-        </div>
-        <input type="hidden" id="hidclickx" value="" runat="server" />
-        <input type="hidden" id="hidclicky" value="" runat="server" />
-        <input type="hidden" id="hidpricex" value="" runat="server" />
-        <input type="hidden" id="hidpricey" value="" runat="server" />
-        <div class="foot"></div>
-        <ul class="footer clearfix0 tac">
-            <li class="curr"><a href="Index.aspx"><i class="iconfont">&#xe67b;</i><p>概况</p></a></li>
-            <li><a href="~/Income/YesterdayEarnings.aspx"><i class="iconfont">&#xe6e0;</i><p>收益</p></a></li>
-            <li><a href="Resource/TransList.aspx"><i class="iconfont">&#xe612;</i><p>管理</p></a></li>
-            <li><a href="Account/AccountMain.aspx"><i class="iconfont">&#xe63f;</i><p>我的</p></a></li>
->>>>>>> 92ac78ee9b08fe676b87a789c461e61434cb2faf
         </ul>
 
 
