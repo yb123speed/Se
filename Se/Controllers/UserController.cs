@@ -232,7 +232,10 @@ namespace Se.Controllers
             return File(ms.ToArray(), @"image/jpeg");
         }
 
+<<<<<<< HEAD
         [Authorize]
+=======
+>>>>>>> 92ac78ee9b08fe676b87a789c461e61434cb2faf
         public ActionResult AffShow()
         {
             return View();
