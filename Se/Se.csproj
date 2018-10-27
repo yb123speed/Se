@@ -171,6 +171,12 @@
       <DependentUpon>SeModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AdminRole.cs" />
+    <Compile Include="Models\BonusLog.cs">
+      <DependentUpon>SeModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>SeModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SeEnum.cs" />
     <Compile Include="Models\SeModels.Context.cs">
       <AutoGen>True</AutoGen>
@@ -191,6 +197,9 @@
       <DependentUpon>SeModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ValidateCode.cs" />
+    <Compile Include="Models\Withdraw.cs">
+      <DependentUpon>SeModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
