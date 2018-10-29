@@ -1,0 +1,298 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>管理员系统</title>
+    <link href="~/lib/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/base.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/share.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/js/jquery-1.7.1.js"></script>
+    <script src="/js/base/baseCommon.js" type="text/javascript"></script>
+    <script language="javascript" type="text/javascript" src="/js/jquery.form.js"></script>
+    <link href="/js/jbox/jBox/Skins2/Blue/jbox.css" rel="stylesheet" type="text/css" />
+    <script src="/js/jbox/jBox/jquery.jBox-2.3.min.js" type="text/javascript"></script>
+    <script src="/js/jbox/jBox/i18n/jquery.jBox-zh-CN.js" type="text/javascript"></script>
+    <style type="text/css">
+
+        .shareLi li {
+            float: left;
+            width: 135px;
+            border-radius: 5px;
+            margin: 25px 10px;
+            display: inline-block;
+        }
+
+            .shareLi li.zudou {
+                background: #22DCC4;
+            }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+
+
+//            changeMenu(4);
+
+            //如果图片不存在，设置默认图片
+            $("img").each(function (i, e) {
+                var imgsrc = $(e).attr("src");
+                $(e).load(function () {
+                    $("<p> ok " + $(e).width() + ":" + $(e).height() + "</p>").appendTo("#msgTool");
+                }).error(function () {
+                    $("<p> error " + imgsrc + "</p>").appendTo("#msgTool");
+                    $(e).attr("src", "/images/img400.jpg");
+                });
+
+            });
+        });
+
+
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <uc1:header ID="MyHeader" runat="server" />
+        <div class="uright fr">
+            <div class="font_w uspInd Radius">
+                <div class="crumb fs14">
+                    <div class="pay fr">
+                        <b>余额：<font class="fs24" id="fontyue" runat="server"></font>元</b>
+                        <a href="Account/PresentRecord.aspx" class="Radius">我要提现</a>
+                    </div>
+                    <a href="javascript:void(0)">首页</a><em>></em>
+                </div>
+                <div class="shareTit fs16">
+                    <span>分享一览</span><span style="margin-left: 452px;">收益一览</span>
+                </div>
+                <div class="shareLi tac clearfix">
+                    <ul>
+                        <li class="Radius zudou">
+                            <span>昨日分享量</span>
+                            <p class="col_b" id="lblclickzuo" runat="server">
+                                0
+                            </p>
+                        </li>
+                        <li class="Radius shaDou">
+                            <span>前7天累计分享量</span>
+                            <p class="col_b" id="lblclick7" runat="server">
+                                0
+                            </p>
+                        </li>
+                        <li class="Radius">
+                            <span>累计分享量</span>
+                            <p class="col_b" id="lblclicksum" runat="server">
+                                0
+                            </p>
+                        </li>
+
+
+                        <span style="padding:0px 14px;float:left;height:1px;"></span>
+                        <li class="Radius zudou">
+                            <span>昨日收益（元）</span>
+                            <p class="col_r" id="lblpricezuo" runat="server">
+                                0<font>.00</font>
+                            </p>
+                        </li>
+                        <li class="Radius shaDou">
+                            <span>前7天总收益（元）</span>
+                            <p class="col_r" id="lblprice7" runat="server">
+                                0<font>.00</font>
+                            </p>
+                        </li>
+                        <li class="Radius">
+                            <span>累计收益（元）</span>
+                            <p class="col_r" id="lblpricesum" runat="server">
+                                0<font>.00</font>
+                            </p>
+                        </li>
+
+
+                    </ul>
+                </div>
+                <div class="shareAbout clearfix">
+                    <div class="withdraw fl">
+                        <div class="shaTit shareTit fs16">
+                            <span>提现一览</span>
+                        </div>
+                        <ul>
+                            <li><span>可提现金额</span><b class="col_b" id="lblyueke" runat="server"><font>0</font>.00元</b></li>
+                            <li><span class="col_r">提现中金额</span><b class="col_r" id="lblyueing" runat="server"><font>0</font>.00元</b></li>
+                            <li><span>已提现金额</span><b id="lblyueyi" runat="server"><font>0</font>.00元</b></li>
+                        </ul>
+                    </div>
+                    <div class="withdraw fl" style="margin-left: 68px;">
+                        <div class="shaTit shareTit fs16">
+                            <span>分成一览</span>
+                        </div>
+                        <ul>
+                            <li><span>昨日分成</span><b class="col_b" id="lblzuo" runat="server"><font>0</font>.00元</b></li>
+                            <li><span class="col_r">前七天累计分成</span><b class="col_r" id="lbl7" runat="server"><font>0</font>.00元</b></li>
+                            <li><span>累计分成</span><b id="lblsum" runat="server"><font>0</font>.00元</b></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="monCount">
+                    <div class="shaTit shareTit fs16">
+
+                        <span>近7天点击量统计</span>
+                    </div>
+                    <div class="con">
+                        <div class="chart" id="main" style="width: 880px;height:250px; margin-top:-50px; margin-left:60px">
+                        </div>
+                    </div>
+                </div>
+                <div class="monCount">
+                    <div class="shaTit shareTit fs16">
+
+                        <span>当月收益统计</span>
+                    </div>
+                    <div class="con">
+                        <div class="chart" id="chart2" style="width: 1000px;height:250px; margin-top:-50px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="hidclickx" value="" runat="server" />
+        <input type="hidden" id="hidclicky" value="" runat="server" />
+        <input type="hidden" id="hidpricex" value="" runat="server" />
+        <input type="hidden" id="hidpricey" value="" runat="server" />
+        @*<script src="~/js/echarts/echarts.js" type="text/javascript"></script>*@
+        <script type="text/javascript">
+
+
+        @*var myChart = echarts.init(document.getElementById('main'));
+        var dataAxis = $("#hidclickx").val().split(","); //x
+        var data = $("#hidclicky").val().split(","); //y
+        option = {
+            color: ['#3398DB'],
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [
+        {
+            type: 'category',
+            data: dataAxis,
+            axisTick: {
+                alignWithLabel: true
+            }
+        }
+    ],
+            yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+            series: [
+        {
+            name: '点击量',
+            type: 'bar',
+            barWidth: '60%',
+            data: data
+        }
+    ]
+        };
+        myChart.setOption(option);
+
+
+        </script>
+        <script type="text/javascript">
+     var myChart2 = echarts.init(document.getElementById('chart2'));
+     var dataAxis2 = $("#hidpricex").val().split(","); //x
+        var data2 = $("#hidpricey").val().split(","); //y
+
+option2 = {
+    tooltip: {
+        trigger: 'axis',
+        position: function (pt) {
+            return [pt[0], '10%'];
+        }
+    },
+
+    toolbox: {
+        feature: {
+            dataZoom: {
+                yAxisIndex: 'none'
+            },
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: dataAxis2
+    },
+    yAxis: {
+        type: 'value',
+        boundaryGap: [0, '100%']
+    },
+    dataZoom: [{
+        type: 'inside',
+        start: 0,
+        end: 100
+    }, {
+        start: 0,
+        end: 10,
+        handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+        handleSize: '80%',
+        handleStyle: {
+            color: '#fff',
+            shadowBlur: 3,
+            shadowColor: 'rgba(0, 0, 0, 0.6)',
+            shadowOffsetX: 2,
+            shadowOffsetY: 2
+        }
+    }],
+    series: [
+        {
+            name:'分享收益',
+            type:'line',
+            smooth:true,
+            symbol: 'none',
+            sampling: 'average',
+            itemStyle: {
+                normal: {
+                    color: 'rgb(255, 70, 131)'
+                }
+            },
+            areaStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: 'rgb(255, 158, 68)'
+                    }, {
+                        offset: 1,
+                        color: 'rgb(255, 70, 131)'
+                    }])
+                }
+            },
+            data: data2
+        }
+    ]
+};
+
+   myChart2.setOption(option2);*@
+        </script>
+    </form>
+
+    <script>
+        $(function () {
+            $(".clickCount").css("width", $(".shareAbout").width() -530);
+        })
+    </script>
+</body>
+</html>
+

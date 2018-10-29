@@ -34,5 +34,41 @@ namespace Se.Controllers
             return Json("");
         }
 
+        public ActionResult MemberList(int p = 1, int ps = 20, string kw="")
+        {
+            ViewBag.P=p;
+            ViewBag.KW=kw;
+            if (p <= 0)
+            {
+                p = 1;
+            }
+            if (ps <= 0)
+            {
+                ps = 20;
+            }
+            var members = db.Users.Where(m => true);
+            if (string.IsNullOrWhiteSpace(kw))
+            {
+
+            }
+            else
+            {
+                members = members.Where(m => m.UserName.Contains(kw));
+            }
+            var count = members.Count();
+            ViewBag.Count = count;
+            if (count % ps > 0)
+            {
+                ViewBag.PC = count / ps + 1;
+            }
+            else
+            {
+                ViewBag.PC = count / ps;
+            }
+            members = members.OrderByDescending(m => m.Id).Skip((p - 1) * ps).Take(ps);
+
+            return View(members);
+        }
+
     }
 }

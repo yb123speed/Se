@@ -25,10 +25,10 @@ namespace Se.Models
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             HttpContextBase b = filterContext.RequestContext.HttpContext;
-            var adminIdStr = b.Request.Cookies["Auth"].Value;
+            var adminIdStr = b.Request.Cookies["Auth"];
 
             var redirectUrl = "/Admin/Login";
-            if (adminIdStr==null||Convert.ToInt32(adminIdStr)<=0)
+            if (adminIdStr==null||Convert.ToInt32(adminIdStr.Value)<=0)
             {
                 filterContext.Result = new RedirectResult(redirectUrl);
                 return;
