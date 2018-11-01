@@ -221,6 +221,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\reset.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\HUI\js\Validform_v5.3.2_min.js" />
     <Content Include="Content\HUI\lib\datatables\1.10.0\jquery.dataTables.min.js" />
     <Content Include="Content\HUI\lib\DD_belatedPNG_0.0.8a-min.js" />
     <Content Include="Content\HUI\lib\echarts\3.4.0\echarts.common.min.js" />
@@ -1290,6 +1291,7 @@
     <Content Include="Content\js\app.js" />
     <Content Include="Content\js\particles.min.js" />
     <Content Include="Content\Pager.css" />
+    <Content Include="Content\welcome.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -2182,6 +2184,7 @@
     <Content Include="Views\Admin\Index - 复制.cshtml" />
     <Content Include="Views\Admin\MemberList.cshtml" />
     <Content Include="Views\Admin\OrderList.cshtml" />
+    <Content Include="Views\Admin\Order.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

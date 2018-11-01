@@ -124,6 +124,26 @@ namespace Se.Controllers
             return View(result);
         }
 
+        public ActionResult Order()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Order([Bind(Include = "Title,Cash,UserName,UserId,Remark")] Order order)
+        {
+            order.OrderTime = DateTime.Now;
+            var u = db.Users.FirstOrDefault(m => m.UserName == order.UserName);
+            if (u == null)
+            {
+                return View();
+            }
+            order.UserId = u.Id;
+            db.Orders.Add(order);
+            db.SaveChanges();
+            return RedirectToAction("OrderList");
+        }
+
         #endregion
 
     }
