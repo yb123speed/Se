@@ -81,16 +81,19 @@
             //},5000)
             var uname = $("#uname").val();
             var pwd = $("#pwd").val();
+
+            
+
             $.ajax({
                 url: '/Admin/Login',
-                async: false,
+                async: true,
                 type: 'POST',
                 data: { UserName: uname, Password: pwd },
                 success: function (data) {
                     if (data == "true") {
-                        removeClass(document.querySelector(".login"), "active")
-                	    removeClass(document.querySelector(".sk-rotating-plane"), "active")
-                	    document.querySelector(".login").style.display = "block"
+                        //removeClass(document.querySelector(".login"), "active")
+                        //removeClass(document.querySelector(".sk-rotating-plane"), "active")
+                        //document.querySelector(".login").style.display = "block"
                 	    alert("登录成功")
                         window.location.href = "/Admin/Index";
                     }
