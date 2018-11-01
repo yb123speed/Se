@@ -2181,6 +2181,7 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Index - 复制.cshtml" />
     <Content Include="Views\Admin\MemberList.cshtml" />
+    <Content Include="Views\Admin\OrderList.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

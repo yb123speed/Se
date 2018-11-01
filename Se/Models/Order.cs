@@ -19,5 +19,7 @@ namespace Se.Models
         public string UserName { get; set; }
         public int UserId { get; set; }
         public string Remark { get; set; }
+        public decimal Cash { get; set; }
+        public System.DateTime OrderTime { get; set; }
     }
 }

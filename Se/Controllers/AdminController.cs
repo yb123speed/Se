@@ -34,6 +34,7 @@ namespace Se.Controllers
             return Json("");
         }
 
+        #region 会员
         public ActionResult MemberList(int p = 1, int ps = 20, string kw="")
         {
             ViewBag.P=p;
@@ -69,6 +70,61 @@ namespace Se.Controllers
 
             return View(members);
         }
+
+        [HttpPost]
+        public ActionResult MemberChangeStatus(int id, int status)
+        {
+            if (status > 1 || id < 1)
+            {
+                return HttpNotFound();
+            }
+            var u = db.Users.Find(id);
+            u.Status = status;
+            db.SaveChanges();
+            return Json(true);
+        }
+        #endregion
+
+        #region 下单
+
+        public ActionResult OrderList(int p = 1, int ps = 20, string kw = "")
+        {
+            ViewBag.P = p;
+            ViewBag.KW = kw;
+            if (p <= 0)
+            {
+                p = 1;
+            }
+            if (ps <= 0)
+            {
+                ps = 20;
+            }
+            var orders = db.Orders.Where(m => true);
+            if (string.IsNullOrWhiteSpace(kw))
+            {
+
+            }
+            else
+            {
+                orders = orders.Where(m => m.UserName.Contains(kw));
+            }
+            var count = orders.Count();
+            ViewBag.Count = count;
+            if (count % ps > 0)
+            {
+                ViewBag.PC = count / ps + 1;
+            }
+            else
+            {
+                ViewBag.PC = count / ps;
+            }
+            orders = orders.OrderByDescending(m => m.Id).Skip((p - 1) * ps).Take(ps);
+            var result =orders.ToList();
+
+            return View(result);
+        }
+
+        #endregion
 
     }
 }

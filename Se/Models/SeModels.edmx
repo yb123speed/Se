@@ -21,9 +21,9 @@
           <Property Name="BonusType" Type="int" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="ToUserId" Type="int" Nullable="false" />
-          <Property Name="OldCash" Type="int" Nullable="false" />
-          <Property Name="Cash" Type="int" Nullable="false" />
-          <Property Name="NewCash" Type="int" Nullable="false" />
+          <Property Name="OldCash" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Cash" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="NewCash" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="BonusTime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Order">
@@ -32,9 +32,11 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="text" Nullable="false" />
+          <Property Name="Cash" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="Remark" Type="text" />
+          <Property Name="OrderTime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -46,8 +48,8 @@
           <Property Name="NickName" Type="nvarchar" MaxLength="50" />
           <Property Name="RegisterTime" Type="datetime" Nullable="false" />
           <Property Name="ParentId" Type="int" Nullable="false" />
-          <Property Name="Bonus" Type="int" Nullable="false" />
-          <Property Name="Withdraw" Type="int" Nullable="false" />
+          <Property Name="Bonus" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Withdraw" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Withdraw">
@@ -55,10 +57,11 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="OldCash" Type="int" Nullable="false" />
-          <Property Name="Cash" Type="int" Nullable="false" />
-          <Property Name="NowCash" Type="int" Nullable="false" />
+          <Property Name="OldCash" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Cash" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="NowCash" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="WithdrawTime" Type="datetime" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="FinishTime" Type="datetime" />
@@ -125,6 +128,8 @@
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Cash" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="OrderTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Withdraw">
           <Key>
@@ -138,6 +143,7 @@
           <Property Name="WithdrawTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="FinishTime" Type="DateTime" Precision="3" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -186,6 +192,8 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="SeModel.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
+                <ScalarProperty Name="Cash" ColumnName="Cash" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -197,6 +205,7 @@
           <EntitySetMapping Name="Withdraws">
             <EntityTypeMapping TypeName="SeModel.Withdraw">
               <MappingFragment StoreEntitySet="Withdraw">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="FinishTime" ColumnName="FinishTime" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="WithdrawTime" ColumnName="WithdrawTime" />

@@ -22,5 +22,6 @@ namespace Se.Models
         public System.DateTime WithdrawTime { get; set; }
         public int Status { get; set; }
         public Nullable<System.DateTime> FinishTime { get; set; }
+        public string UserName { get; set; }
     }
 }
