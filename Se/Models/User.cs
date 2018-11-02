@@ -20,8 +20,8 @@ namespace Se.Models
         public string NickName { get; set; }
         public System.DateTime RegisterTime { get; set; }
         public int ParentId { get; set; }
-        public int Bonus { get; set; }
-        public int Withdraw { get; set; }
+        public decimal Bonus { get; set; }
+        public decimal Withdraw { get; set; }
         public int Status { get; set; }
     }
 }

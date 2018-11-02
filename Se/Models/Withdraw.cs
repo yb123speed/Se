@@ -16,9 +16,9 @@ namespace Se.Models
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public int OldCash { get; set; }
-        public int Cash { get; set; }
-        public int NowCash { get; set; }
+        public decimal OldCash { get; set; }
+        public decimal Cash { get; set; }
+        public decimal NowCash { get; set; }
         public System.DateTime WithdrawTime { get; set; }
         public int Status { get; set; }
         public Nullable<System.DateTime> FinishTime { get; set; }

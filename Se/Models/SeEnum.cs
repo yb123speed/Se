@@ -7,15 +7,15 @@ namespace Se.Models
 {
     public enum BonusType
     {
-        TuiJian,
-        TuanDui,
-        ChouJiang,
+        推荐奖,
+        团队奖,
+        抽奖,
     }
 
     public enum WithdrawStatus
     {
-        TiXianZhong,
-        JuJue,
-        WanCheng,
+        提现中,
+        拒绝,
+        完成,
     }
 }

@@ -18,9 +18,12 @@ namespace Se.Models
         public int BonusType { get; set; }
         public int UserId { get; set; }
         public int ToUserId { get; set; }
-        public int OldCash { get; set; }
-        public int Cash { get; set; }
-        public int NewCash { get; set; }
+        public decimal OldCash { get; set; }
+        public decimal Cash { get; set; }
+        public decimal NewCash { get; set; }
         public System.DateTime BonusTime { get; set; }
+        public string UserName { get; set; }
+        public string ToUserName { get; set; }
+        public string Remark { get; set; }
     }
 }

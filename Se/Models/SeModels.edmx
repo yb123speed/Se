@@ -19,12 +19,15 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BonusType" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ToUserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ToUserId" Type="int" Nullable="false" />
           <Property Name="OldCash" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Cash" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="NewCash" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="BonusTime" Type="datetime" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -87,8 +90,8 @@
           <Property Name="NickName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="RegisterTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ParentId" Type="Int32" Nullable="false" />
-          <Property Name="Bonus" Type="Int32" Nullable="false" />
-          <Property Name="Withdraw" Type="Int32" Nullable="false" />
+          <Property Name="Bonus" Type="Decimal" Nullable="false" />
+          <Property Name="Withdraw" Type="Decimal" Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityContainer Name="SeEntities" annotation:LazyLoadingEnabled="true">
@@ -114,10 +117,13 @@
           <Property Name="BonusType" Type="Int32" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="ToUserId" Type="Int32" Nullable="false" />
-          <Property Name="OldCash" Type="Int32" Nullable="false" />
-          <Property Name="Cash" Type="Int32" Nullable="false" />
-          <Property Name="NewCash" Type="Int32" Nullable="false" />
+          <Property Name="OldCash" Type="Decimal" Nullable="false" />
+          <Property Name="Cash" Type="Decimal" Nullable="false" />
+          <Property Name="NewCash" Type="Decimal" Nullable="false" />
           <Property Name="BonusTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ToUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Remark" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -137,9 +143,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="OldCash" Type="Int32" Nullable="false" />
-          <Property Name="Cash" Type="Int32" Nullable="false" />
-          <Property Name="NowCash" Type="Int32" Nullable="false" />
+          <Property Name="OldCash" Type="Decimal" Nullable="false" />
+          <Property Name="Cash" Type="Decimal" Nullable="false" />
+          <Property Name="NowCash" Type="Decimal" Nullable="false" />
           <Property Name="WithdrawTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="FinishTime" Type="DateTime" Precision="3" />
@@ -178,6 +184,9 @@
           <EntitySetMapping Name="BonusLogs">
             <EntityTypeMapping TypeName="SeModel.BonusLog">
               <MappingFragment StoreEntitySet="BonusLog">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="ToUserName" ColumnName="ToUserName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="BonusTime" ColumnName="BonusTime" />
                 <ScalarProperty Name="NewCash" ColumnName="NewCash" />
                 <ScalarProperty Name="Cash" ColumnName="Cash" />

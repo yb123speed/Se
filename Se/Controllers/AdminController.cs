@@ -156,13 +156,16 @@ namespace Se.Controllers
                     {
                         BonusLog bonusLog1 = new BonusLog
                         {
+                            UserName =u.UserName,
                             UserId = u.Id,
+                            ToUserName = u1.UserName,
                             ToUserId = u1.Id,
                             BonusTime = DateTime.Now,
-                            BonusType = (int)BonusType.TuiJian,
+                            BonusType = (int)BonusType.推荐奖,
                             Cash = 900,
                             OldCash = u1.Bonus,
-                            NewCash = u1.Bonus + 900
+                            NewCash = u1.Bonus + 900,
+                            Remark = $"直推1代{u.UserName}->{u1.UserName}",
                         };
                         u1.Bonus = bonusLog1.NewCash;
                         context.BonusLogs.Add(bonusLog1);
@@ -175,13 +178,16 @@ namespace Se.Controllers
                             {
                                 BonusLog bonusLog2 = new BonusLog
                                 {
+                                    UserName = u1.UserName,
                                     UserId = u1.Id,
+                                    ToUserName = u2.UserName,
                                     ToUserId = u2.Id,
                                     BonusTime = DateTime.Now,
-                                    BonusType = (int)BonusType.TuiJian,
+                                    BonusType = (int)BonusType.推荐奖,
                                     Cash = 700,
                                     OldCash = u2.Bonus,
-                                    NewCash = u2.Bonus + 700
+                                    NewCash = u2.Bonus + 700,
+                                    Remark = $"直推2代{u.UserName}->{u1.UserName}->{u2.UserName}",
                                 };
                                 u2.Bonus = bonusLog2.NewCash;
                                 context.BonusLogs.Add(bonusLog2);
@@ -194,13 +200,16 @@ namespace Se.Controllers
                                     {
                                         BonusLog bonusLog3 = new BonusLog
                                         {
+                                            UserName= u2.UserName,
                                             UserId = u2.Id,
+                                            ToUserName =u3.UserName,
                                             ToUserId = u3.Id,
                                             BonusTime = DateTime.Now,
-                                            BonusType = (int)BonusType.TuiJian,
+                                            BonusType = (int)BonusType.推荐奖,
                                             Cash = 700,
                                             OldCash = u3.Bonus,
-                                            NewCash = u3.Bonus + 700
+                                            NewCash = u3.Bonus + 700,
+                                            Remark = $"直推3代{u.UserName}->{u1.UserName}->{u2.UserName}->{u3.UserName}",
                                         };
                                         u3.Bonus = bonusLog3.NewCash;
                                         context.BonusLogs.Add(bonusLog3);
@@ -231,5 +240,43 @@ namespace Se.Controllers
 
         #endregion
 
+        #region 奖金
+        public ActionResult BonusList(int p = 1, int ps = 20, string kw = "")
+        {
+            ViewBag.P = p;
+            ViewBag.KW = kw;
+            if (p <= 0)
+            {
+                p = 1;
+            }
+            if (ps <= 0)
+            {
+                ps = 20;
+            }
+            var logs = db.BonusLogs.Where(m => true);
+            if (string.IsNullOrWhiteSpace(kw))
+            {
+
+            }
+            else
+            {
+                logs = logs.Where(m => m.Remark.Contains(kw));
+            }
+            var count = logs.Count();
+            ViewBag.Count = count;
+            if (count % ps > 0)
+            {
+                ViewBag.PC = count / ps + 1;
+            }
+            else
+            {
+                ViewBag.PC = count / ps;
+            }
+            logs = logs.OrderByDescending(m => m.Id).Skip((p - 1) * ps).Take(ps);
+
+            return View(logs);
+        }
+
+        #endregion
     }
 }
