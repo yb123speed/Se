@@ -126,20 +126,25 @@ namespace Se.Controllers
 
         public ActionResult Order()
         {
+            ViewBag.UserDict = db.Users.Where(m => m.Status == 1).Select<User,UserDictVM>(m => new UserDictVM
+            {
+                UserId=m.Id,
+                UserName=m.UserName
+            });
             return View();
         }
 
         [HttpPost]
-        public ActionResult Order([Bind(Include = "Title,Cash,UserName,UserId,Remark")] Order order)
+        public ActionResult Order([Bind(Include = "Title,Cash,UserId,Remark")] Order order)
         {
             order.OrderTime = DateTime.Now;
 
-            var u = db.Users.AsNoTracking().FirstOrDefault(m => m.UserName == order.UserName);
+            var u = db.Users.AsNoTracking().FirstOrDefault(m => m.Id == order.UserId);
             if (u == null)
             {
                 return View();
             }
-            order.UserId = u.Id;
+            order.UserName = u.UserName;
             using (var context = new SeEntities())
             using (var trans = context.Database.BeginTransaction())
             {

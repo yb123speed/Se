@@ -205,6 +205,7 @@
       <DependentUpon>SeModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ValidateCode.cs" />
+    <Compile Include="Models\ViewModels.cs" />
     <Compile Include="Models\Withdraw.cs">
       <DependentUpon>SeModels.tt</DependentUpon>
     </Compile>
@@ -1288,6 +1289,8 @@
     <Content Include="Content\img\name.png" />
     <Content Include="Content\img\password.png" />
     <Content Include="Content\index.html" />
+    <Content Include="Content\jquery.searchableSelect.css" />
+    <Content Include="Content\jquery.searchableSelect.js" />
     <Content Include="Content\js\app.js" />
     <Content Include="Content\js\particles.min.js" />
     <Content Include="Content\Pager.css" />

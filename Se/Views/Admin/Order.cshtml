@@ -1,4 +1,4 @@
-﻿
+﻿@using Se.Models
 @{
     Layout = null;
 }
@@ -18,11 +18,12 @@
     <![endif]-->
     <link type="text/css" rel="stylesheet" href="/Content/HUI/static/h-ui/css/H-ui.css" />
     <link type="text/css" rel="stylesheet" href="/Content/HUI/static/h-ui.admin/css/H-ui.admin.css" />
+    <link href="~/Content/jquery.searchableSelect.css" rel="stylesheet" />
     @*<link type="text/css" rel="stylesheet" href="/Content/HUI/font/font-awesome.min.css" />*@
     <!--[if IE 7]>
     <link href="http://www.bootcss.com/p/font-awesome/assets/css/font-awesome-ie7.min.css" rel="stylesheet" type="text/css" />
     <![endif]-->
-    <title>添加用户</title>
+    <title>添加下单记录</title>
 </head>
 <body>
     <div class="pd-20">
@@ -36,7 +37,18 @@
                         </tr>
                         <tr>
                             <th width="100" class="text-r"><span class="c-red">*</span> 用户名：</th>
-                            <td><input type="text" style="width:200px" class="input-text" value="" placeholder="" id="user-name" name="UserName" datatype="*1-50" nullmsg="用户名不能为空"></td>
+                            <td>
+                                <select name="UserId" id="user" class="js-select">
+                                    <option value="">选择对应的会员</option>
+                                    @if ((ViewBag.UserDict as IQueryable<UserDictVM>).Count() > 0)
+                                    {
+                                        foreach (var i in ViewBag.UserDict as IQueryable<UserDictVM>)
+                                        {
+                                            <option value="@i.UserId">@i.UserId - @i.UserName</option>
+                                        }
+                                    }
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <th class="text-r"><span class="c-red">*</span> 金额：</th>
@@ -59,19 +71,23 @@
     <script type="text/javascript" src="/Content/HUI/js/Validform_v5.3.2_min.js"></script>
     <script type="text/javascript" src="/Content/HUI/static/h-ui/js/H-ui.js"></script>
     <script type="text/javascript" src="/Content/HUI/static/h-ui.admin/js/H-ui.admin.js"></script>
+    <script src="~/Content/jquery.searchableSelect.js"></script>
     <script type="text/javascript">
-$(".Huiform").Validform();
+        $(".Huiform").Validform();
+        $(function () {
+            $('select').searchableSelect();
+        });
     </script>
     @*<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?080836300300be57b7f34f4b3e97d911";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F080836300300be57b7f34f4b3e97d911' type='text/javascript'%3E%3C/script%3E"));
-    </script>*@
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?080836300300be57b7f34f4b3e97d911";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F080836300300be57b7f34f4b3e97d911' type='text/javascript'%3E%3C/script%3E"));
+            </script>*@
 </body>
 </html>
