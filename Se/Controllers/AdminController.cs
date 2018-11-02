@@ -133,14 +133,94 @@ namespace Se.Controllers
         public ActionResult Order([Bind(Include = "Title,Cash,UserName,UserId,Remark")] Order order)
         {
             order.OrderTime = DateTime.Now;
-            var u = db.Users.FirstOrDefault(m => m.UserName == order.UserName);
+
+            var u = db.Users.AsNoTracking().FirstOrDefault(m => m.UserName == order.UserName);
             if (u == null)
             {
                 return View();
             }
             order.UserId = u.Id;
-            db.Orders.Add(order);
-            db.SaveChanges();
+            using (var context = new SeEntities())
+            using (var trans = context.Database.BeginTransaction())
+            {
+                #region 第一代
+                if (u.ParentId > 0)//有上级
+                {
+                    User u1 = context.Users.FirstOrDefault(m => m.Id == u.ParentId);
+                    if (u1 != null)
+                    {
+                        BonusLog bonusLog1 = new BonusLog
+                        {
+                            UserId = u.Id,
+                            ToUserId = u1.Id,
+                            BonusTime = DateTime.Now,
+                            BonusType = (int)BonusType.TuiJian,
+                            Cash = 900,
+                            OldCash = u1.Bonus,
+                            NewCash = u1.Bonus + 900
+                        };
+                        u1.Bonus = bonusLog1.NewCash;
+                        context.BonusLogs.Add(bonusLog1);
+
+                        #region 第二代
+                        if (u1.ParentId > 0)
+                        {
+                            User u2 = context.Users.FirstOrDefault(m => m.Id == u1.ParentId);
+                            if (u2 != null)
+                            {
+                                BonusLog bonusLog2 = new BonusLog
+                                {
+                                    UserId = u1.Id,
+                                    ToUserId = u2.Id,
+                                    BonusTime = DateTime.Now,
+                                    BonusType = (int)BonusType.TuiJian,
+                                    Cash = 700,
+                                    OldCash = u2.Bonus,
+                                    NewCash = u2.Bonus + 700
+                                };
+                                u2.Bonus = bonusLog2.NewCash;
+                                context.BonusLogs.Add(bonusLog2);
+
+                                #region 第三代
+                                if (u2.ParentId > 0)
+                                {
+                                    User u3 = context.Users.FirstOrDefault(m => m.Id == u2.ParentId);
+                                    if (u3 != null)
+                                    {
+                                        BonusLog bonusLog3 = new BonusLog
+                                        {
+                                            UserId = u2.Id,
+                                            ToUserId = u3.Id,
+                                            BonusTime = DateTime.Now,
+                                            BonusType = (int)BonusType.TuiJian,
+                                            Cash = 700,
+                                            OldCash = u3.Bonus,
+                                            NewCash = u3.Bonus + 700
+                                        };
+                                        u3.Bonus = bonusLog3.NewCash;
+                                        context.BonusLogs.Add(bonusLog3);
+                                    }
+                                }
+                                #endregion
+                            }
+                        }
+                        #endregion
+
+                    }
+                }
+                #endregion
+
+                context.Orders.Add(order);
+                try
+                {
+                    context.SaveChanges();
+                    trans.Commit();
+                }
+                catch
+                {
+                    trans.Rollback();
+                }
+            }
             return RedirectToAction("OrderList");
         }
 
