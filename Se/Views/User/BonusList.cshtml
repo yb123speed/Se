@@ -1,0 +1,170 @@
+﻿@using Se.Models
+@model  IQueryable<Se.Models.BonusLog>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8">
+    <title>收益记录</title>
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+    <meta content="no-cache" http-equiv="pragma">
+    <meta content="0" http-equiv="expires">
+    <meta content="telephone=no, address=no" name="format-detection">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="stylesheet" type="text/css" href="~/lib/base.css" media="all">
+    <link rel="stylesheet" type="text/css" href="~/lib/style.css" media="all">
+</head>
+
+<body class="backF1">
+    <form id="form1" runat="server">
+        <div class="head">
+            <a href="javascript:void(0)" onclick="window.history.go(-1);"><i class="iconfont col_f">&#xe604;</i></a>
+            <span>收益中心</span>
+        </div>
+        <h2 class="manTab clearfix0">
+            <span class="manTabOn"><i class="iconfont pr" style="top:-0.05rem;">&#xe606;</i>收益记录（@Model.Count()）</span>
+            <span><i class="iconfont">&#xe607;</i>提现记录（123）</span>
+        </h2>
+        <div class="searchWrap">
+            @*<h2>
+                <input type="text" placeholder="请输入搜索标签 " id="txtsign" value="" />
+                <span class="colB pa tac"><i class="iconfont">&#xe608;</i></span>
+            </h2>*@
+            @*<p>温馨提示：每次有效的分享点击收益为0.07~0.15元/次！</p>*@
+        </div>
+        <div class="manWrap">
+            @*<ul class="manTop clearfix0">
+                <li><input type="checkbox" class="selectAll" />全选</li>
+                <li><input type="button" value="批量删除" class="delAll"></li>
+                <li><a href="#" class="colR">最新发布<i class="iconfont">&#xe611;</i></a></li>
+                <li>备注名称</li>
+                <li>企业名称</li>
+            </ul>*@
+            <div class="manCon" id="divlist">
+                @if (Model.Count() > 0)
+                {
+                    foreach (var i in Model)
+                    {
+
+                    <div class="manList">
+                        @*<h2 class="clearfix0">
+                        <span class="fl"><input type="checkbox" /></span>
+                        <i class="iconfont fr del">&#xe602;</i>
+                        </h2>*@
+                        <ul>
+                            <li>奖金类型：@Enum.GetName(typeof(BonusType),i.BonusType)</li>
+                            <li>金额：@i.Cash</li>
+                            <li> 备注：@i.Remark</li>
+                            <li> 发放时间：@i.BonusTime.ToString("yyyy年MM月dd日 HH时mm分") </li>
+                        </ul>
+                    </div>
+                     }
+                }
+
+            </div>
+        </div>
+
+        <div class="foot"></div>
+        <ul class="footer clearfix0 tac">
+            <li><a href="/User/Index"><i class="iconfont">&#xe67b;</i><p>概况</p></a></li>
+            <li class="curr"><a href="/User/BonusList"><i class="iconfont">&#xe6e0;</i><p>收益</p></a></li>
+            <li><a href="/User/InviteCodeShow"><i class="iconfont">&#xe612;</i><p>推广码</p></a></li>
+            <li><a href="/User/Mine"><i class="iconfont">&#xe63f;</i><p>我的</p></a></li>
+        </ul>
+        <script src="~/js/jquery-1.8.0.min.js"></script>
+        <script src="~/js/fontsize.js"></script>
+        <script src="~/js/jquery.waterfall.js" type="text/javascript"></script>
+        <script>
+    $(function () {
+        //$('.selectAll').click(function () {
+        //    if (this.checked) {
+        //        $(".manList input").attr('checked', true)
+        //    } else {
+        //        $(".manList input").attr('checked', false)
+        //    }
+        //});
+        //$('.delAll').click(function () {
+        //    $(".manList input:checked").parents('.manList').remove();
+        //});
+        //$('.del').click(function () {
+        //    $(this).parent().parent().remove();
+        //});
+    })
+
+        </script>
+        <script type="text/javascript">
+
+    $(function () {
+
+        //var sign = Request("sign");
+        //if (sign != "") {
+        //    $("#txtsign").val(sign);
+        //}
+
+        //GetList(sign);
+        //GetList();
+    });
+//    var wf_page = 0;
+//    var pageSize = 20;
+//    function GetList() {
+
+//        $.ajax({
+//            url: '/User/Bonus',
+//            cache: false,
+//            type: 'POST',
+//            dataType: "json",
+//            success: function (pagecount) {
+//                if (pagecount.total == "0") {
+//                    var html = '  <div class=\"noPro tac\"> <span><em>暂时没有相关历史记录</em></span></div>';
+////                    $("#divnopro").css("display", "none");
+//                    $('#divlist').html(html);
+//                }
+//                else {
+//                    $('#divlist').waterfall({
+//                        perNum: pageSize,
+//                        ajaxTimes: pagecount.total,
+//                        marginTop: 20, 		// 每列的上间宽
+//                        // 自定义跨域请求
+//                        ajaxFunc: function (success, error) {
+//                            $.ajax({
+//                                url: '/wx/ashx/resource.ashx?type=gettranslistlist',
+//                                cache: false,
+//                                data: { 'page': ++wf_page, 'pageSize': pageSize, "lastpagesize": pagecount.quyu, total: pagecount.count, "sign": sign },
+//                                type: 'POST',
+//                                dataType: "json",
+//                                success: success,
+//                                error: error
+//                            });
+//                        },
+//                        createHtml: function (data) {
+//                            if (data != null) {
+//                                var html = '<div class=\"manList\"><h2 class=\"clearfix0\"><span class=\"fl\"><input type=\"checkbox\" />' + data.sign + '</span><i class=\"iconfont fr del\">&#xe602;</i></h2><ul><li>所属领域：' + data.type + '</li><li>域 &nbsp; &nbsp; &nbsp; &nbsp;名：</b>' + data.web + '</li><li>企业名称：' + data.cusname + '</li><li>分享时间：' + data.ctime + '</li></ul></div>';
+
+//                                return html;
+
+
+//                            }
+//                        }
+//                    });
+//                }
+//            }
+//        });
+//    }
+
+    //function Search() {
+
+    //    window.location.href = "TransList.aspx?sign=" + $("#txtsign").val() ;
+    //}
+
+
+        </script>
+    </form>
+</body>
+</html>

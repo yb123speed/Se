@@ -2189,6 +2189,7 @@
     <Content Include="Views\Admin\OrderList.cshtml" />
     <Content Include="Views\Admin\Order.cshtml" />
     <Content Include="Views\Admin\BonusList.cshtml" />
+    <Content Include="Views\User\BonusList.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

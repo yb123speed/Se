@@ -21,9 +21,27 @@ namespace Se.Controllers
 
         [Authorize]
         // GET: Users
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.Users.ToListAsync());
+            var user = db.Users.Find(Convert.ToInt32(User.Identity.Name));
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            var dt = DateTime.Now.Date;
+            var yesterday = dt.AddDays(-1);
+            var day7 = dt.AddDays(-1);
+
+
+            var yesterdayBonus = db.BonusLogs.Where(m => m.ToUserId == user.Id && (m.BonusTime > yesterday && m.BonusTime < dt));
+            ViewBag.Yesterday = yesterdayBonus.Count()>0?yesterdayBonus.Sum(m => m.Cash):(decimal)0;
+            var day7Bonus = db.BonusLogs.Where(m => m.ToUserId == user.Id && (m.BonusTime > yesterday && m.BonusTime < dt));
+            ViewBag.Day7ShouYi = day7Bonus.Count()>0? day7Bonus.Sum(m=>m.Cash):(decimal)0;
+            var allBonus = db.BonusLogs.Where(m => m.ToUserId == user.Id);
+            ViewBag.AllBonus = allBonus.Count()>0?allBonus.Sum(m=>m.Cash):(decimal)0;
+            var tixianBonus = db.Withdraws.Where(m => m.UserId == user.Id && m.Status == (int)WithdrawStatus.提现中);
+            ViewBag.TiXianZhong = tixianBonus.Count()>0?tixianBonus.Sum(m => m.Cash):(decimal)0;
+            return View(user);
         }
 
         // GET: Users/Details/5
@@ -249,6 +267,14 @@ namespace Se.Controllers
         {
             var count = db.Users.Where(m => m.ParentId == affid).Count();
             return count;
+        }
+
+        [Authorize]
+        public ActionResult BonusList()
+        {
+            int uid = Convert.ToInt32(User.Identity.Name);
+            var bonusLogList = db.BonusLogs.Where(m => m.ToUserId == uid);
+            return View(bonusLogList);
         }
     }
 }

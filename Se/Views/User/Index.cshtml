@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Se.Models.User
+@{
     Layout = null;
 }
 
@@ -37,27 +38,27 @@
                 <img src="~/images/user.jpg" class="userImg" id="imglogo"onclick="javascript:window.location.href='Account/AccountMain.aspx'" />
                 <div class="userInfo">
                     <span id="lblusername"onclick="javascript:window.location.href='Account/AccountMain.aspx'"></span>
-                    <p>余额：<b id="lblyue" >0.00</b> 元 <a href="~/Income/AccountDetail.aspx">余额明细</a></p>
+                    <p>余额：<b id="lblyue" >@Model.Bonus</b> 元 @*<a href="~/Income/AccountDetail.aspx">余额明细</a></p>*@
                 </div>
             </div>
             <span class="identy" id="spanrenzheng" ><i class="iconfont">&#xe643;</i>已认证</span>
-            <span class="inIdenty" id="spanweirenzheng"onclick="javascript:window.location.href='Account/Authentication.aspx'"><i class="iconfont">&#xe60d;</i>未认证</span>
+            @*<span class="inIdenty" id="spanweirenzheng"onclick="javascript:window.location.href='Account/Authentication.aspx'"><i class="iconfont">&#xe60d;</i>未认证</span>*@
         </div>
         <div class="briefCon">
             <div class="briefList">
                 <p><i class="iconfont">&#xe6a5;</i>提现一览</p>
                 <div class="money clearfix0">
-                    <a href="~/Income/YesterdayEarnings.aspx"><span>可提现金额<br /><b id="lblketi" >0.00元</b></span></a>
-                    <a href="~/Income/ApplicationDetail.aspx"><span>提现中金额<br /><b id="lbltiing" >0.0元</b></span></a>
-                    <a href="~/Income/PresentRecord.aspx"><span>已提现金额<br /><b id="lblyiti" >0.0元</b></span></a>
+                    <a href="~/Income/YesterdayEarnings.aspx"><span>可提现金额<br /><b id="lblketi" >@Model.Bonus 元</b></span></a>
+                    <a href="~/Income/ApplicationDetail.aspx"><span>提现中金额<br /><b id="lbltiing" >@ViewBag.TiXianZhong 元</b></span></a>
+                    <a href="~/Income/PresentRecord.aspx"><span>已提现金额<br /><b id="lblyiti" >@Model.Withdraw 元</b></span></a>
                 </div>
             </div>
             <div class="briefList">
                 <p><i class="iconfont">&#xe629;</i>收益一览</p>
                 <div class="money clearfix0">
-                    <a href="javascript:void(0)"><span>昨日收益<br /><b id="lblzuo" >0.0元</b></span></a>
-                    <a href="~/Income/SevenEarnings.aspx"><span>前7天累计收益<br /><b id="lblqian" >0.0元</b></span></a>
-                    <a href="~/Income/SumEarnings.aspx"><span>累计收益<br /><b id="lblsum" >0.0元</b></span></a>
+                    <a href="javascript:void(0)"><span>昨日收益<br /><b id="lblzuo" >@ViewBag.Yesterday 元</b></span></a>
+                    <a href="~/Income/SevenEarnings.aspx"><span>前7天累计收益<br /><b id="lblqian" >@ViewBag.Day7ShouYi 元</b></span></a>
+                    <a href="~/Income/SumEarnings.aspx"><span>累计收益<br /><b id="lblsum" >@ViewBag.AllBonus 元</b></span></a>
                 </div>
             </div>
             <div class='briefList'>
