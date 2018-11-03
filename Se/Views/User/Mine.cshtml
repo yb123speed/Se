@@ -1,0 +1,95 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+    <meta content="no-cache" http-equiv="pragma">
+    <meta content="0" http-equiv="expires">
+    <meta content="telephone=no, address=no" name="format-detection">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- apple devices fullscreen -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/Styles/base.css" />
+    <link rel="stylesheet" href="/Styles/common.css" />
+    <script type="text/javascript" src="/Scripts/jquery-1.8.0.min.js"></script>
+    <script src="/Scripts/fontsize.js"></script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="my">
+            <div>
+                <div class="my_tit fl">
+                    <figure>
+                        <div class="fl">
+                            <img src="/images/user.jpg" id="imglogo" style=" width:80px; height:80px" runat="server" />
+                        </div>
+                        <div class="fl mt5">
+                            <figcaption>
+                                <b id="lblnick" runat="server"></b>
+                                <p id="spanrenzheng" runat="server">未认证</p>
+                            </figcaption>
+                        </div>
+                    </figure>
+                </div>
+                <div class="modify fr">
+                    <div class="modify_bg">
+                    </div>
+                    <span><a href="ChangeInfo.aspx">修改</a></span>
+                </div>
+            </div>
+        </div>
+        <div class="myclass bdr-bottom">
+            <p class="subNav bdr-bottom" id="parter" runat="server">
+                <a href="MemberList.aspx"><i></i>分销团队</a>
+            </p>
+            <p class="subNav bdr-bottom">
+                <a href="AccountBind.aspx"><i></i>账号绑定</a>
+            </p>
+            <p class="subNav">
+                <a href="Authentication.aspx"><i></i>实名认证</a><font>
+                    <a href="Authentication.aspx"
+                       id="spanrenzheng2" runat="server">去认证</a>
+                </font>
+            </p>
+        </div>
+        <div class="myclass myclass2 bdr-bottom">
+            <p class="subNav bdr-bottom">
+                <a href="http://usp.zhuchao.cc/Mobile/help/help.html"><i></i>帮助中心</a>
+            </p>
+            <p class="subNav bdr-bottom">
+                <a href="http://usp.zhuchao.cc/Mobile/about.aspx"><i></i>关于企业头条</a>
+            </p>
+        </div>
+        <div class="my_logout">
+            <a href="../login.aspx">退出登录</a>
+        </div>
+        <!--底部导航 -->
+        <div class="menu clearfix">
+            <div class="bdr-top"></div>
+            <a class="pic1" href="/User/Index">
+                <p>
+                    首页
+                </p>
+            </a>
+            <a class="pic2" href="/User/BonusList">
+                <p>
+                    收益
+                </p>
+            </a><a class="pic3" href="/User/InviteQRCode">
+                <p>
+                    推广码
+                </p>
+            </a><a class="pic4 picgl4" href="javascript:void(0)">
+                <p>
+                    我的
+                </p>
+            </a>
+        </div>
+    </form>
+</body>
+</html>

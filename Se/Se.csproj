@@ -2113,6 +2113,7 @@
     <Content Include="Content\HUI\lib\webuploader\0.1.5\images\progress.psd" />
     <Content Include="Content\HUI\lib\webuploader\0.1.5\README.md" />
     <Content Include="Content\HUI\temp\Thumbs.db" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\fontsize.js" />
     <None Include="Scripts\jquery-1.4.1-vsdoc.js" />
@@ -2190,6 +2191,7 @@
     <Content Include="Views\Admin\Order.cshtml" />
     <Content Include="Views\Admin\BonusList.cshtml" />
     <Content Include="Views\User\BonusList.cshtml" />
+    <Content Include="Views\User\Mine.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

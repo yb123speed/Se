@@ -276,5 +276,10 @@ namespace Se.Controllers
             var bonusLogList = db.BonusLogs.Where(m => m.ToUserId == uid);
             return View(bonusLogList);
         }
+
+        public ActionResult Mine()
+        {
+            return View();
+        }
     }
 }
