@@ -277,6 +277,7 @@ namespace Se.Controllers
             return View(bonusLogList);
         }
 
+        [Authorize]
         public ActionResult Mine()
         {
             return View();
