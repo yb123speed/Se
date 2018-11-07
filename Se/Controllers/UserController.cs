@@ -283,6 +283,29 @@ namespace Se.Controllers
             return View();
         }
 
+        [Authorize]
+        public ActionResult MyOrderList()
+        {
+            int uid = Convert.ToInt32(User.Identity.Name);
+            var orderList = db.Orders.Where(m => m.UserId == uid).OrderByDescending(m=>m.Id).Take(20);
+            return View(orderList);
+        }
+
+        [Authorize]
+        public ActionResult GetMoreOrderList(int p=2)
+        {
+            int uid = Convert.ToInt32(User.Identity.Name);
+            var orderList = db.Orders.Where(m => m.UserId == uid)
+                .OrderByDescending(m => m.Id).Skip((p - 1) * 20).Take(20).ToList<Order>()
+                .Select(m=>new {
+                    m.Title,
+                    m.Cash,
+                    m.Remark,
+                    OrderTime = m.OrderTime.ToString("yyyy年MM月dd日 HH时mm分"),
+                });
+            return Json(orderList,JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Logout()
         {
             System.Web.Security.FormsAuthentication.SignOut();

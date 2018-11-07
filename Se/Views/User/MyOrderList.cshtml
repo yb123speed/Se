@@ -1,0 +1,116 @@
+﻿
+@{
+    Layout = null;
+}
+
+@using Se.Models
+@model  IQueryable<Se.Models.Order>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8">
+    <title>收益记录</title>
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+    <meta content="no-cache" http-equiv="pragma">
+    <meta content="0" http-equiv="expires">
+    <meta content="telephone=no, address=no" name="format-detection">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="stylesheet" type="text/css" href="~/lib/base.css" media="all">
+    <link rel="stylesheet" type="text/css" href="~/lib/style.css" media="all">
+</head>
+
+<body class="backF1">
+    <form id="form1" runat="server">
+        <div class="head">
+            <a href="javascript:void(0)" onclick="window.history.go(-1);"><i class="iconfont col_f">&#xe604;</i></a>
+            <span>订单中心</span>
+        </div>
+        <div class="manWrap">
+            <div class="manCon" id="divlist">
+                @if (Model.Count() > 0)
+                {
+                    foreach (var i in Model)
+                    {
+                        <div class="manList">
+                            <ul>
+                                <li>订单名：@i.Title</li>
+                                <li>金额：@i.Cash</li>
+                                <li>备注：@i.Remark</li>
+                                <li>下单时间：@i.OrderTime.ToString("yyyy年MM月dd日 HH时mm分") </li>
+                            </ul>
+                        </div>
+                    }
+                }
+            </div>
+            <div style="width:100%;text-align:center;">
+                <button id="getMore" type="button">加载更多数据~~</button>
+            </div>
+        </div>
+
+        <div class="foot"></div>
+        <ul class="footer clearfix0 tac">
+            <li><a href="/User/Index"><i class="iconfont">&#xe67b;</i><p>概况</p></a></li>
+            <li class="curr"><a href="/User/BonusList"><i class="iconfont">&#xe6e0;</i><p>收益</p></a></li>
+            <li><a href="/User/InviteCodeShow"><i class="iconfont">&#xe612;</i><p>推广码</p></a></li>
+            <li><a href="/User/Mine"><i class="iconfont">&#xe63f;</i><p>我的</p></a></li>
+        </ul>
+        <script src="~/js/jquery-1.8.0.min.js"></script>
+        <script src="~/js/fontsize.js"></script>
+        <script>
+    $(function () {
+        //$('.selectAll').click(function () {
+        //    if (this.checked) {
+        //        $(".manList input").attr('checked', true)
+        //    } else {
+        //        $(".manList input").attr('checked', false)
+        //    }
+        //});
+        //$('.delAll').click(function () {
+        //    $(".manList input:checked").parents('.manList').remove();
+        //});
+        //$('.del').click(function () {
+        //    $(this).parent().parent().remove();
+        //});
+
+        var p = 2;
+        $("#getMore").click(function () {
+            $.ajax({
+                url: "/user/getmoreorderlist?p=" + p,
+                //dataType: 'application/json',
+                method: 'GET',
+                success: function (data) {
+                    console.log(data)
+                    if (data.length > 0) {
+                        var html = '';
+                        for (var i in data) {
+                            html += "<div class=\"manList\">";
+                            html += "<ul>                   ";
+                            html += "  <li>订单名："+ data[i].Title +"</li>";
+                            html += "    <li>金额：" + data[i].Cash + "</li>";
+                            html += "   <li>备注：" + data[i].Remark + "</li>";
+                            html += "    <li>下单时间：" + data[i].OrderTime + " </li>";
+                            html += "</ul>";
+                            html += "</div>";
+                        }
+                        $('#divlist').append(html);
+                        p = p + 1;
+                    }
+                    else {
+                        alert("没有更多数据了~~");
+                    }
+                },
+            });
+        });
+    })
+        </script>
+    </form>
+</body>
+</html>
