@@ -2193,6 +2193,7 @@
     <Content Include="Views\User\BonusList.cshtml" />
     <Content Include="Views\User\Mine.cshtml" />
     <Content Include="Views\User\MyOrderList.cshtml" />
+    <Content Include="Views\User\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

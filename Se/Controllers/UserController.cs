@@ -312,5 +312,30 @@ namespace Se.Controllers
             return RedirectToAction("Login");
 
         }
+
+        [Authorize]
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult ChangePassword(string newpwd, string newpwdf)
+        {
+            if (newpwd != newpwdf)
+            {
+                return Json("nopaswd");
+            }
+            if (newpwd.Length > 16 && newpwd.Length < 6)
+            {
+                return Json("nosix");
+            }
+            int uid = Convert.ToInt32(User.Identity.Name);
+            var u = db.Users.Find(uid);
+            u.Password = newpwd;
+            db.SaveChanges();
+            System.Web.Security.FormsAuthentication.SignOut();
+            return Json("ok");
+        }
     }
 }

@@ -8,18 +8,19 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>收益记录</title>
-    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
-    <meta content="no-cache" http-equiv="pragma">
-    <meta content="0" http-equiv="expires">
-    <meta content="telephone=no, address=no" name="format-detection">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-    <link rel="stylesheet" type="text/css" href="~/lib/base.css" media="all">
-    <link rel="stylesheet" type="text/css" href="~/lib/style.css" media="all">
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control" />
+    <meta content="no-cache" http-equiv="pragma" />
+    <meta content="0" http-equiv="expires" />
+    <meta content="telephone=no, address=no" name="format-detection" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="stylesheet" href="/Styles/base.css" />
+    <link rel="stylesheet" href="/Styles/common.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/base.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="~/lib/style.css" media="all" />
 </head>
 
 <body class="backF1">
@@ -71,13 +72,27 @@
             </div>
         </div>
 
-        <div class="foot"></div>
-        <ul class="footer clearfix0 tac">
-            <li><a href="/User/Index"><i class="iconfont">&#xe67b;</i><p>概况</p></a></li>
-            <li class="curr"><a href="/User/BonusList"><i class="iconfont">&#xe6e0;</i><p>收益</p></a></li>
-            <li><a href="/User/InviteCodeShow"><i class="iconfont">&#xe612;</i><p>推广码</p></a></li>
-            <li><a href="/User/Mine"><i class="iconfont">&#xe63f;</i><p>我的</p></a></li>
-        </ul>
+        <div class="menu clearfix">
+            <div class="bdr-top"></div>
+            <a class="pic1" href="/User/Index">
+                <p>
+                    首页
+                </p>
+            </a>
+            <a class="pic2" href="/User/BonusList">
+                <p>
+                    收益
+                </p>
+            </a><a class="pic3" href="/User/InviteCodeShow">
+                <p>
+                    推广码
+                </p>
+            </a><a class="pic4 picgl4" href="/User/Mine">
+                <p>
+                    我的
+                </p>
+            </a>
+        </div>
         <script src="~/js/jquery-1.8.0.min.js"></script>
         <script src="~/js/fontsize.js"></script>
         <script src="~/js/jquery.waterfall.js" type="text/javascript"></script>
